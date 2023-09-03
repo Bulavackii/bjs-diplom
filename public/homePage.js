@@ -42,3 +42,18 @@ setInterval(repeatGetStocks, 60000);
 
 // Создаем объект для выполнения операций с деньгами пользователя
 const moneyManager = new MoneyManager();
+
+// Устанавливаем обработчик для пополнения баланса
+moneyManager.addMoneyCallback = (data) => {
+    ApiConnector.addMoney(data, (response) => {
+      if (response.success) {
+        // Отображаем обновленный профиль пользователя
+        ProfileWidget.showProfile(response.data);
+        // Устанавливаем сообщение об успешном пополнении баланса
+        moneyManager.setMessage(response.success, "Баланс кошелька пополнен");
+      } else {
+        // Устанавливаем сообщение об ошибке
+        moneyManager.setMessage(response.success, response.error);
+      }
+    });
+  };
