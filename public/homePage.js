@@ -95,3 +95,20 @@ ApiConnector.getFavorites((response) => {
       moneyManager.updateUsersList(response.data);
     }
   });
+
+  // Устанавливаем обработчик для добавления пользователя в избранное
+favoritesWidget.addUserCallback = (data) => {
+    ApiConnector.addUserToFavorites(data, (response) => {
+      if (response.success) {
+        // Обновляем таблицу избранных пользователей и список пользователей для операций с деньгами
+        favoritesWidget.clearTable();
+        favoritesWidget.fillTable(response.data);
+        moneyManager.updateUsersList(response.data);
+        // Устанавливаем сообщение об успешном добавлении пользователя в избранное
+        favoritesWidget.setMessage(response.success, "Пользователь добавлен в избранное");
+      } else {
+        // Устанавливаем сообщение об ошибке
+        favoritesWidget.setMessage(response.success, response.error);
+      }
+    });
+  };
