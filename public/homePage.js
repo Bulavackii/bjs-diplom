@@ -84,3 +84,14 @@ moneyManager.sendMoneyCallback = (data) => {
 
   // Создаем объект для работы с избранными пользователями
 const favoritesWidget = new FavoritesWidget();
+
+// Получаем начальный список избранных пользователей
+ApiConnector.getFavorites((response) => {
+    if (response.success) {
+      // Очищаем и заполняем таблицу с избранными пользователями
+      favoritesWidget.clearTable();
+      favoritesWidget.fillTable(response.data);
+      // Обновляем список пользователей для операций с деньгами
+      moneyManager.updateUsersList(response.data);
+    }
+  });
