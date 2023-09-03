@@ -21,3 +21,6 @@ ApiConnector.current((response) => {
       ProfileWidget.showProfile(response.data);
     }
   });
+
+  // Создаем объект для отображения текущих курсов валюты
+const ratesBoard = new RatesBoard();
