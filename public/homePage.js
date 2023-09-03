@@ -81,3 +81,6 @@ moneyManager.sendMoneyCallback = (data) => {
       }
     });
   };
+
+  // Создаем объект для работы с избранными пользователями
+const favoritesWidget = new FavoritesWidget();
