@@ -69,3 +69,15 @@ moneyManager.conversionMoneyCallback = (data) => {
       }
     });
   };
+
+  // Устанавливаем обработчик для перевода валюты
+moneyManager.sendMoneyCallback = (data) => {
+    ApiConnector.transferMoney(data, (response) => {
+      if (response.success) {
+        ProfileWidget.showProfile(response.data);
+        moneyManager.setMessage(response.success, "Перевод выполнен");
+      } else {
+        moneyManager.setMessage(response.success, response.error);
+      }
+    });
+  };
