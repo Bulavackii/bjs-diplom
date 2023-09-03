@@ -13,3 +13,11 @@ logoutButton.action = () => {
     }
   });
 };
+
+// Получение информации о текущем пользователе
+ApiConnector.current((response) => {
+    if (response.success) {
+      // Отображаем профиль пользователя на странице
+      ProfileWidget.showProfile(response.data);
+    }
+  });
