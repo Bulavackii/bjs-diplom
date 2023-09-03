@@ -39,3 +39,6 @@ const repeatGetStocks = () => {
   // Выполняем первичное получение данных о курсах и устанавливаем периодическое обновление каждые 60 секунд
 repeatGetStocks();
 setInterval(repeatGetStocks, 60000);
+
+// Создаем объект для выполнения операций с деньгами пользователя
+const moneyManager = new MoneyManager();
