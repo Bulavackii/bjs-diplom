@@ -35,3 +35,7 @@ const repeatGetStocks = () => {
       }
     });
   };
+
+  // Выполняем первичное получение данных о курсах и устанавливаем периодическое обновление каждые 60 секунд
+repeatGetStocks();
+setInterval(repeatGetStocks, 60000);
