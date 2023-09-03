@@ -24,3 +24,14 @@ ApiConnector.current((response) => {
 
   // Создаем объект для отображения текущих курсов валюты
 const ratesBoard = new RatesBoard();
+
+// Функция для обновления данных о курсах валют
+const repeatGetStocks = () => {
+    ApiConnector.getStocks((response) => {
+      if (response.success) {
+        // Очищаем и заполняем таблицу с курсами валют
+        ratesBoard.clearTable();
+        ratesBoard.fillTable(response.data);
+      }
+    });
+  };
