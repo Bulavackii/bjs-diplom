@@ -112,3 +112,20 @@ favoritesWidget.addUserCallback = (data) => {
       }
     });
   };
+
+  // Устанавливаем обработчик для удаления пользователя из избранного
+favoritesWidget.removeUserCallback = (data) => {
+    ApiConnector.removeUserFromFavorites(data, (response) => {
+      if (response.success) {
+        // Обновляем таблицу избранных пользователей и список пользователей для операций с деньгами
+        favoritesWidget.clearTable();
+        favoritesWidget.fillTable(response.data);
+        moneyManager.updateUserList(response.data);
+        // Устанавливаем сообщение об успешном удалении пользователя
+        favoritesWidget.setMessage(response.success, "Пользователь успешно удален");
+      } else {
+        // Устанавливаем сообщение об ошибке
+        favoritesWidget.setMessage(response.success, response.error);
+      }
+    });
+  };
