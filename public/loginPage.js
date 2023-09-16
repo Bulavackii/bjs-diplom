@@ -1,9 +1,9 @@
 "use strict";
 
-const userForm = new UserForm();
+const userFormAuth = new UserForm();
 
 // Функция обратного вызова для входа в личный кабинет
-userForm.loginFormCallback = (data) => {
+userFormAuth.loginFormCallback = (data) => {
   // Вызываем метод для отправки данных на сервер и обработки результата
   ApiConnector.login(data, response => {
     if (response.success) {
@@ -11,18 +11,18 @@ userForm.loginFormCallback = (data) => {
       location.reload();
     } else {
       // Если есть ошибка, устанавливаем сообщение об ошибке
-      userForm.setLoginErrorMessage(response.error);
+      userFormAuth.setLoginErrorMessage(response.error);
     };
   });
 };
 
 // Функция обратного вызова для регистрации
-userForm.registerFormCallBack = (data) => {
+userFormAuth.registerFormCallBack = (data) => {
   ApiConnector.register(data, response => {
     if (response.success) {
       location.reload();
     } else {
-      userForm.setRegisterErrorMessage(response.error);
+      userFormAuth.setRegisterErrorMessage(response.error);
     };
   });
 };
