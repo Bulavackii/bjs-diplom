@@ -17,12 +17,12 @@ userFormAuth.loginFormCallback = (data) => {
 };
 
 // Функция обратного вызова для регистрации
-userFormAuth.registerFormCallBack = (data) => {
+userFormAuth.registerFormCallback = (data) => {
   ApiConnector.register(data, response => {
     if (response.success) {
       location.reload();
     } else {
-      userFormAuth.setRegisterErrorMessage(response.error);
+      userFormAuth.setregisterErrorMessage(response.error);
     };
   });
 };
