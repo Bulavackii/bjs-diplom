@@ -23,6 +23,6 @@ userForm.registerFormCallBack = (data) => {
       location.reload();
     } else {
       userForm.setRegisterErrorMessage(response.error);
-    }
+    };
   });
 };
